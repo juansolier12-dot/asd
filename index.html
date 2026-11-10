@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para el amor de mi vida 🧸💖</title>
+    <!-- Fuentes de Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 50%, #ff416c 100%);
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Contenedor de elementos flotantes (corazones y ositos) */
+        .floating-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: rgba(255, 255, 255, 0.75);
+            transform: rotate(45deg);
+            animation: animateHearts 6s linear infinite;
+            bottom: -40px;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: rgba(255, 255, 255, 0.75);
+            border-radius: 50%;
+        }
+
+        .heart::before { top: -9px; left: 0; }
+        .heart::after { top: 0; left: -9px; }
+
+        @keyframes animateHearts {
+            0% { transform: translateY(0) rotate(45deg) scale(0.6); opacity: 1; }
+            100% { transform: translateY(-110vh) rotate(45deg) scale(1.3); opacity: 0; }
+        }
+
+        .floating-bear {
+            position: absolute;
+            font-size: 2rem;
+            animation: floatBears 8s ease-in-out infinite;
+            bottom: -50px;
+            opacity: 0.9;
+        }
+
+        @keyframes floatBears {
+            0% { transform: translateY(0) translateX(0) scale(0.8) rotate(0deg); opacity: 0.8; }
+            50% { transform: translateY(-55vh) translateX(15px) scale(1.1) rotate(8deg); opacity: 1; }
+            100% { transform: translateY(-110vh) translateX(-15px) scale(0.9) rotate(-8deg); opacity: 0; }
+        }
+
+        /* Tarjeta principal */
+        .card {
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.93);
+            padding: 30px 25px;
+            border-radius: 30px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+            text-align: center;
+            max-width: 520px;
+            width: 90%;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.85); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Peluche bonito en la parte superior del título */
+        .cute-plush {
+            font-size: 3.5rem;
+            margin-bottom: -5px;
+            display: inline-block;
+            animation: plushBounce 2s ease-in-out infinite;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+        }
+
+        @keyframes plushBounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-8px) scale(1.05); }
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.2rem;
+            color: #d63384;
+            margin-bottom: 2px;
+        }
+
+        .subtitle {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+
+        /* REPRODUCTOR DE MÚSICA ESTILO REIK */
+        .music-player {
+            background: linear-gradient(135deg, #fff0f3, #ffe3e8);
+            border: 2px solid #ffb6c1;
+            border-radius: 20px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 8px 20px rgba(255, 182, 193, 0.3);
+        }
+
+        .player-heart-btn {
+            background: #ff416c;
+            border: none;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 65, 108, 0.5);
+            transition: transform 0.2s;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .player-heart-btn span {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .playing .player-heart-btn {
+            animation: heartbeat 1.2s infinite ease-in-out;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            15% { transform: scale(1.18); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.12); }
+            60% { transform: scale(1); }
+        }
+
+        .player-heart-btn:hover {
+            transform: scale(1.08);
+        }
+
+        .player-info {
+            flex-grow: 1;
+            text-align: left;
+        }
+
+        .song-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #333;
+        }
+
+        .song-artist {
+            font-size: 0.8rem;
+            color: #d63384;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 6px;
+            background: #ffd1dc;
+            border-radius: 3px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: #ff416c;
+            border-radius: 3px;
+            transition: width 0.1s linear;
+        }
+
+        /* Caja de Frases */
+        .phrase-box {
+            min-height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            padding: 0 12px;
+            background: rgba(255, 182, 193, 0.15);
+            border-radius: 15px;
+            border: 1px dashed #ffb6c1;
+        }
+
+        p.phrase {
+            font-size: 1.05rem;
+            color: #444;
+            font-weight: 400;
+            transition: opacity 0.4s ease-in-out;
+            line-height: 1.5;
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 65, 108, 0.4);
+            transition: transform 0.2s, background 0.3s;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background: linear-gradient(45deg, #ff4b2b, #ff416c);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(45deg, #f7797d, #fbd786);
+            color: #444;
+            box-shadow: 0 4px 15px rgba(247, 121, 125, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Fondo dinámico con corazones y ositos detallados -->
+    <div class="floating-container" id="floatingContainer"></div>
+
+    <!-- Tarjeta Principal de Amor -->
+    <div class="card" id="mainCard">
+        <!-- Osito de peluche bonito arriba de las letras -->
+        <div class="cute-plush">🧸💖</div>
+        
+        <h1>Para el Amor de Mi Vida</h1>
+        <p class="subtitle">Toca el corazón para ponerle música y lee lo que siento por ti ✨</p>
+        
+        <!-- REPRODUCTOR DE MÚSICA ESTILO REIK -->
+        <div class="music-player" id="musicPlayerBox">
+            <button class="player-heart-btn" id="playBtn" onclick="togglePlayMusic()">
+                <span id="playIcon">▶</span>
+            </button>
+            <div class="player-info">
+                <div class="song-title">Creo en Ti 🎵</div>
+                <div class="song-artist">Reik (Romántica)</div>
+                <div class="progress-bar-container" onclick="seekAudio(event)">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="phrase-box">
+            <p class="phrase" id="phraseText">"Desde el momento en que entraste en mi vida, cada segundo se ha vuelto mágico e inolvidable."</p>
+        </div>
+
+        <div class="buttons-container">
+            <button class="btn" onclick="nextPhrase()">Siguiente Frase 💖</button>
+            <button class="btn btn-secondary" onclick="showSurprise()">Mensaje de Osito 💌</button>
+        </div>
+    </div>
+
+    <!-- Audio romántico adaptado de Reik -->
+    <audio loop id="bgMusic">
+        <source src="https://mp3tourl.com/audio/1794094818252-6bfa141c-8113-4909-82d6-25362a54d02f.mp3" type="audio/mp3">
+        Tu navegador no soporta audio.
+    </audio>
+
+    <script>
+        const phrases = [
+            "\"Desde el momento en que entraste en mi vida, cada segundo se ha vuelto mágico e inolvidable.\"",
+            "\"No necesito buscar el paraíso en otro lado, porque ya tengo la hermosa suerte de compartir mis días contigo.\"",
+            "\"Eres mi casualidad más bonita, la persona que llegó a iluminar hasta mis días más grises con solo sonreír.\"",
+            "\"Cada latido de mi corazón lleva tu nombre grabado profundamente y sin remedio alguno.\"",
+            "\"Contigo descubrí que el amor verdadero no se busca, simplemente se encuentra en una persona tan maravillosa como tú.\"",
+            "\"Gracias por hacer mi universo mucho más brillante, tierno y lleno de alegría.\"",
+            "\"Podría mirar el mundo entero y aun así mis ojos siempre te elegirán y te buscarán a ti.\"",
+            "\"Tus ojos tienen el poder de detener el tiempo y hacer que todo lo malo desaparezca por completo.\"",
+            "\"Eres ese pensamiento bonito que tengo antes de dormir y el primero que cruza mi mente al despertar.\"",
+            "\"Me haces sentir que todo es posible y hermoso simplemente estando tomados de la mano.\"",
+            "\"No hay distancia ni obstáculo en este mundo que pueda apagar este sentimiento tan sincero que tengo por ti.\"",
+            "\"Eres mi refugio seguro en los días difíciles y mi mayor motivo de felicidad en los momentos alegres.\"",
+            "\"Simplemente me encantas tú, con tus virtudes, tus ocurrencias y cada detalle que te hace única en este mundo.\""
+        ];
+
+        let currentIndex = 0;
+        const phraseElement = document.getElementById("phraseText");
+
+        function nextPhrase() {
+            phraseElement.style.opacity = 0;
+            setTimeout(() => {
+                currentIndex = (currentIndex + 1) % phrases.length;
+                phraseElement.innerText = phrases[currentIndex];
+                phraseElement.style.opacity = 1;
+            }, 300);
+        }
+
+        function showSurprise() {
+            phraseElement.style.opacity = 0;
+            setTimeout(() => {
+                phraseElement.innerHTML = "🧸💖 <b>¡Te amo con todo mi corazón, mi princesita hermosa!</b> Eres mi osita favorita en este mundo y te prometo cuidarte y hacerte sonreír siempre. 💖🧸";
+                phraseElement.style.opacity = 1;
+            }, 300);
+        }
+
+        // --- CONTROL DEL REPRODUCTOR DE MÚSICA Y EL CORAZÓN LATENTE ---
+        const music = document.getElementById('bgMusic');
+        const playBtn = document.getElementById('playBtn');
+        const playIcon = document.getElementById('playIcon');
+        const musicPlayerBox = document.getElementById('musicPlayerBox');
+        const progressBar = document.getElementById('progressBar');
+
+        function togglePlayMusic() {
+            if (music.paused) {
+                music.play();
+                playIcon.innerHTML = "❤️"; 
+                musicPlayerBox.classList.add("playing");
+            } else {
+                music.pause();
+                playIcon.innerHTML = "▶"; 
+                musicPlayerBox.classList.remove("playing");
+            }
+        }
+
+        music.addEventListener('timeupdate', () => {
+            if (music.duration) {
+                const progressPercent = (music.currentTime / music.duration) * 100;
+                progressBar.style.width = progressPercent + '%';
+            }
+        });
+
+        function seekAudio(event) {
+            const container = event.currentTarget;
+            const clickX = event.offsetX;
+            const width = container.clientWidth;
+            const duration = music.duration;
+            if (duration) {
+                music.currentTime = (clickX / width) * duration;
+            }
+        }
+
+        function createFloatingElements() {
+            const container = document.getElementById("floatingContainer");
+            
+            if (Math.random() > 0.4) {
+                const heart = document.createElement("span");
+                heart.className = "heart";
+                heart.style.left = Math.random() * 100 + "vw";
+                const size = Math.random() * 16 + 10 + "px";
+                heart.style.width = size;
+                heart.style.height = size;
+                heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+                container.appendChild(heart);
+                setTimeout(() => heart.remove(), 6000);
+            } else {
+                const bear = document.createElement("span");
+                bear.className = "floating-bear";
+                bear.innerHTML = Math.random() > 0.5 ? "🧸" : "💖";
+                bear.style.left = Math.random() * 100 + "vw";
+                bear.style.fontSize = (Math.random() * 1.5 + 1.2) + "rem";
+                bear.style.animationDuration = (Math.random() * 4 + 5) + "s";
+                container.appendChild(bear);
+                setTimeout(() => bear.remove(), 8000);
+            }
+        }
+
+        setInterval(createFloatingElements, 350);
+    </script>
+</body>
+</html>
